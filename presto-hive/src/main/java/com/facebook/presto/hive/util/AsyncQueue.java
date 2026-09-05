@@ -149,7 +149,7 @@ public class AsyncQueue<T>
 
     public synchronized ListenableFuture<List<T>> getBatchAsync(int maxSize)
     {
-        return borrowBatchAsync(maxSize, elements -> new BorrowResult<>(ImmutableList.of(), elements));
+        return borrowBatchAsync(maxSize, elements -> new BorrowResult<>(ImmutableList.<T>of(), elements));
     }
 
     /**
