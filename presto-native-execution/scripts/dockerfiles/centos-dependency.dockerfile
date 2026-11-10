@@ -46,7 +46,11 @@ RUN bash -c "mkdir build && \
                  source ../velox/scripts/setup-centos9.sh && \
                  source ../velox/scripts/setup-centos-adapters.sh && \
                  install_adapters && \
-                 install_clang15 && \
+                 (if declare -F install_clang_with_openmp >/dev/null; then \
+                    install_clang_with_openmp; \
+                  else \
+                    install_clang15; \
+                  fi) && \
                  install_cuda ${CUDA_VERSION} && \
                  install_ucx) && \
     rm -rf build"
