@@ -226,6 +226,10 @@ include_directories(${CMAKE_BINARY_DIR})
 # set this for backwards compatibility, will be overwritten in velox/
 set(VELOX_GTEST_INCUDE_DIR "velox/third_party/googletest/googletest/include")
 
+# Presto still uses the legacy Hive insert handle, which resolves existing
+# partition behavior from the session rather than from the planned handle.
+add_compile_definitions(VELOX_ENABLE_BACKWARD_COMPATIBILITY)
+
 set(VELOX_MONO_LIBRARY ON CACHE BOOL "Build Velox mono library")
 add_subdirectory(velox)
 
